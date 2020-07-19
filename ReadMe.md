@@ -23,7 +23,7 @@ http://web.mit.edu/drela/Public/web/xrotor/xrotor_doc.txt
 ------------------------------------
 ## rotor
 - diameter : 0.14 m
-- tip radius : 0.065 m
+- tip radius : 0.07 m
 - hub radius : 0.005 m
 - Thrust : 1Nf
 - rpm : 6500
