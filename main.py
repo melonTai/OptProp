@@ -47,7 +47,7 @@ from deap import tools
         - 0 to 5  : chord[m] @ r/R[0.1, 0.3, 0.5, 0.7, 0.9, 1.0]
         - 6 to 11 : beta[deg] @ r/R[0.1, 0.3, 0.5, 0.7, 0.9, 1.0]
 # constraint
-    - chord : 0.005mm <= chords[i] <= 0.04
+    - chord : 0.005m <= chords[i] <= 0.04m
     - beta  : 0deg <= betas[i] <= 22deg
 # penalty
     - Thrust >= 2Nf
