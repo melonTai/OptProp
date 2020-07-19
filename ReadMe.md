@@ -38,7 +38,7 @@ http://web.mit.edu/drela/Public/web/xrotor/xrotor_doc.txt
 - chord : 翼弦長
 - beta : 取付角
 - r_R : r/R [0.1, 0.3, 0.5, 0.7, 0.9, 1.0]
-- sn : section number
+- sn : section number(size of r/R = 6)
 ## variables
 - chord[m] @ r/R[0.1, 0.3, 0.5, 0.7, 0.9, 1.0]
 - beta[deg] @ r/R[0.1, 0.3, 0.5, 0.7, 0.9, 1.0]
@@ -52,7 +52,7 @@ http://web.mit.edu/drela/Public/web/xrotor/xrotor_doc.txt
     - 0 to 5  : chord[m] @ r/R[0.1, 0.3, 0.5, 0.7, 0.9, 1.0]
     - 6 to 11 : beta[deg] @ r/R[0.1, 0.3, 0.5, 0.7, 0.9, 1.0]
 ## constraint
-- chord : 0.005mm <= chords[i] <= 0.04
+- chord : 0.005m <= chords[i] <= 0.04m
 - beta  : 0deg <= betas[i] <= 22deg
-## penalty
-- Thrust >= 2Nf
+- Thrust >= 1Nf @ 6500rpm
+- Thrust >= 3Nf @ 9500rpm
