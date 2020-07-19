@@ -1,0 +1,6 @@
+bestRotor*
+.git/
+rotor*
+test*
+/__pycache__/*
+res*
