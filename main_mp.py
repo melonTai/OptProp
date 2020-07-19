@@ -1,5 +1,8 @@
 #author --fujita yuki--
 # -*- coding: utf-8 -*-
+"""
+main.pyの並列処理用プログラム
+"""
 from xrotor import Xrotor
 from model import RotorModel
 from scipy import interpolate
