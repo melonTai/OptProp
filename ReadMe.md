@@ -2,40 +2,40 @@
 # 設計諸元
 ------------------------------------
 ## rotor(tale)
-    - diameter : 0.14 m
-    - tip radius : 0.065 m
-    - hub radius : 0.005 m
-    - Thrust : 1Nf
-    - rpm : 6500
+- diameter : 0.14 m
+- tip radius : 0.065 m
+- hub radius : 0.005 m
+- Thrust : 1Nf
+- rpm : 6500
 ## aerofoil
-    - AG14
+- AG14
 ------------------------------------
 # 最適化の定義
 ------------------------------------
 ## definition
-    - R : tip radius
-    - r : position @ rotor from its root
-    - chord : 翼弦長
-    - beta : 取付角
-    - r_R : r/R [0.1, 0.3, 0.5, 0.7, 0.9, 1.0]
-    - sn : section number
+- R : tip radius
+- r : position @ rotor from its root
+- chord : 翼弦長
+- beta : 取付角
+- r_R : r/R [0.1, 0.3, 0.5, 0.7, 0.9, 1.0]
+- sn : section number
 ## variables
-    - chord[m] @ r/R[0.1, 0.3, 0.5, 0.7, 0.9, 1.0]
-    - beta[deg] @ r/R[0.1, 0.3, 0.5, 0.7, 0.9, 1.0]
+- chord[m] @ r/R[0.1, 0.3, 0.5, 0.7, 0.9, 1.0]
+- beta[deg] @ r/R[0.1, 0.3, 0.5, 0.7, 0.9, 1.0]
 ## objective
-    - minimize efficiency
+- minimize efficiency
 ## optimization method
-    - GA
+- GA
 ## individual
-    - size : sn × 2
-    - content
-        - 0 to 5  : chord[m] @ r/R[0.1, 0.3, 0.5, 0.7, 0.9, 1.0]
-        - 6 to 11 : beta[deg] @ r/R[0.1, 0.3, 0.5, 0.7, 0.9, 1.0]
+- size : sn × 2
+- content
+    - 0 to 5  : chord[m] @ r/R[0.1, 0.3, 0.5, 0.7, 0.9, 1.0]
+    - 6 to 11 : beta[deg] @ r/R[0.1, 0.3, 0.5, 0.7, 0.9, 1.0]
 ## constraint
-    - chord : 0.005mm <= chords[i] <= 0.04
-    - beta  : 0deg <= betas[i] <= 22deg
+- chord : 0.005mm <= chords[i] <= 0.04
+- beta  : 0deg <= betas[i] <= 22deg
 ## penalty
-    - Thrust >= 2Nf
+- Thrust >= 2Nf
 ------------------------------------
 # プログラム概要
 ------------------------------------
