@@ -17,6 +17,7 @@ http://www.esotec.org/sw/dl/Espara_doc.txt
 self.aerofに指定した翼型モデルファイルは
 http://web.mit.edu/drela/Public/web/xrotor/xrotor_doc.txt
 のAERO欄を参照
+
 ------------------------------------
 # 設計諸元
 ------------------------------------
