@@ -1,4 +1,23 @@
 ------------------------------------
+# プログラム概要
+------------------------------------
+設計諸元において効率が最大となるプロペラの形状モデルファイルを作成するプログラム
+最適化は遺伝的アルゴリズムを用いている。
+最適化のアルゴリズムはnsga3_base.pyから継承している。
+各世代ごとの最適解をbestRotorgen[世代数].txtとして出力し、
+各世代において暫定最適解複数候補をbestRotor[0~199].txtとして出力する。
+
+プロペラの性能計算はcrotorを使用している。
+http://www.esotec.org/sw/crotor.html
+
+モデルファイルの形式は
+http://www.esotec.org/sw/dl/Espara_doc.txt
+のIMPO欄を参照
+
+self.aerofに指定した翼型モデルファイルは
+http://web.mit.edu/drela/Public/web/xrotor/xrotor_doc.txt
+のAERO欄を参照
+------------------------------------
 # 設計諸元
 ------------------------------------
 ## rotor(tale)
@@ -36,22 +55,3 @@
 - beta  : 0deg <= betas[i] <= 22deg
 ## penalty
 - Thrust >= 2Nf
-------------------------------------
-# プログラム概要
-------------------------------------
-設計諸元において効率が最大となるプロペラの形状モデルファイルを作成するプログラム
-最適化は遺伝的アルゴリズムを用いている。
-最適化のアルゴリズムはnsga3_base.pyから継承している。
-各世代ごとの最適解をbestRotorgen[世代数].txtとして出力し、
-各世代において暫定最適解複数候補をbestRotor[0~199].txtとして出力する。
-
-プロペラの性能計算はcrotorを使用している。
-http://www.esotec.org/sw/crotor.html
-
-モデルファイルの形式は
-http://www.esotec.org/sw/dl/Espara_doc.txt
-のIMPO欄を参照
-
-self.aerofに指定した翼型モデルファイルは
-http://web.mit.edu/drela/Public/web/xrotor/xrotor_doc.txt
-のAERO欄を参照
