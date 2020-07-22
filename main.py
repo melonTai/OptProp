@@ -76,7 +76,7 @@ class newnsga3(nsga3):
     def __init__(self):
         super().__init__()
         self.tipr = 0.15
-        self.hubr = 0.03
+        self.hubr = 0.01
         self.T1 = 3
         self.rpm1 = 2000
         self.r_R = [0.1, 0.3, 0.5, 0.7, 0.9, 1.0]

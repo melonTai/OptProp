@@ -192,15 +192,13 @@ class Xrotor(object):
 if __name__ == "__main__":
     import numpy as np
     xr = Xrotor(2, 1.0)
+    xr.aero("the_best_v4_Re5000.txt")
+    xr.impo("bestRotor1.txt")
+    xr.dens = 1.226e-2
     xr.velo = 0.1
-    xr.rpm = 7000
-    xr.aero("HQ_0_10.txt")
-    xr.impo("rotor.txt")
+    xr.rpm = 2000
     xr.oper()
-    xr.velo = 0.1
-    xr.rpm = 6000
-    xr.oper()
-    xr.cput("test3.txt")
-    xr.call()
-    res = np.loadtxt("test3.txt", skiprows=3)
+    xr.cput("test.txt")
+    res = xr.call(timeout = 7)
+    #res = np.loadtxt("test.txt", skiprows=3)
     print(res)
