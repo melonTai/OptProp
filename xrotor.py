@@ -6,15 +6,15 @@ class Xrotor(object):
     """
     xrotorを操作するクラス
     各メソッドはxrotorにおけるコマンドと対応する
-    #メソッド
-    ##コマンド
+    # メソッド
+    ## コマンド
     実行コマンドを__commandに登録する
     - impo(モデルファイル名)
         rotorモデル作成
     - oper(出力ファイル名)
         各種解析条件は属性のセッターで設定
         (velo,rpmなど)
-    ##その他
+    ## その他
     - call
         __commandに登録したコマンド実行
         このメソッドは最後に必ず呼び出すこと
@@ -32,6 +32,8 @@ class Xrotor(object):
         ブレード枚数
     - fs
         設計進行速度
+    - dens
+        大気密度
     """
     #oper\nn\n100\n\n
     def __init__(self, nb, fs):
@@ -41,6 +43,7 @@ class Xrotor(object):
         self.__rpm = 160
         self.__nb = nb
         self.__fs = fs
+        self.__dens = 1.226
 
     @property
     def n(self):
@@ -69,6 +72,15 @@ class Xrotor(object):
     @fs.setter
     def fs(self,value):
         self.__fs = value
+
+    @property
+    def dens(self):
+        return self.__dens
+
+    @dens.setter
+    def dens(self, value):
+        self.__dens = value
+        self.__command += "dens\n{dens}\n".format(dens = self.__dens)
 
     def call(self,timeout=7):
         #---xfoilの呼び出し---
