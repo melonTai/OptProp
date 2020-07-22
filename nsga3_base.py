@@ -99,6 +99,7 @@ class nsga3(object):
         self.mut_eta = 20
         self.thread = 4
         self.weights = (-1.0)*self.NOBJ
+        self.P = 12
 
     def setup(self):
         # Create uniform reference point
