@@ -17,13 +17,14 @@ from deap import tools
 設計諸元
 ------------------------------------
 # rotor(tale)
-    - diameter : 0.14 m
-    - tip radius : 0.065 m
-    - hub radius : 0.005 m
-    - Thrust : 1Nf
-    - rpm : 6500
+    - diameter : 0.3 m
+    - tip radius : 0.15 m
+    - hub radius : 0.03 m
+    - Thrust : 3Nf
+    - rpm : 2000
+    - density : 1.226e-2
 # aerofoil
-    - AG14
+    - the_best_v4
 ------------------------------------
 最適化の定義
 ------------------------------------
@@ -47,10 +48,10 @@ from deap import tools
         - 0 to 5  : chord[m] @ r/R[0.1, 0.3, 0.5, 0.7, 0.9, 1.0]
         - 6 to 11 : beta[deg] @ r/R[0.1, 0.3, 0.5, 0.7, 0.9, 1.0]
 # constraint
-    - chord : 0.005m <= chords[i] <= 0.04m
-    - beta  : 0deg <= betas[i] <= 22deg
+    - chord : 0.005m <= chords[i] <= 0.1m
+    - beta  : 0deg <= betas[i] <= 90deg
 # penalty
-    - Thrust >= 2Nf
+    - Thrust >= 3Nf
 ------------------------------------
 プログラム概要
 ------------------------------------
@@ -74,25 +75,24 @@ http://web.mit.edu/drela/Public/web/xrotor/xrotor_doc.txt
 class newnsga3(nsga3):
     def __init__(self):
         super().__init__()
-        self.tipr = 0.07
-        self.hubr = 0.005
-        self.T1 = 1
-        self.T2 = 3
-        self.rpm1 = 6500
-        self.rpm2 = 9500
+        self.tipr = 0.15
+        self.hubr = 0.03
+        self.T1 = 3
+        self.rpm1 = 2000
         self.r_R = [0.1, 0.3, 0.5, 0.7, 0.9, 1.0]
         self.sn = len(self.r_R)
         self.b = 2
         self.fs = 0.0
-        self.velo = 0.01
-        self.aerof = "AG14_Re50000.txt"
+        self.velo = 0.1
+        self.aerof = "the_best_v4_Re5000.txt"
+        self.dens = 1.226e-2
 
         # individual
         ## size
         self.NDIM = 12
         ## constraint
         self.BOUND_LOW = [0.005] * 6 + [0] * 6
-        self.BOUND_UP = [0.04] * 6 + [22] * 6
+        self.BOUND_UP = [0.1] * 6 + [90] * 6
 
         self.weights = (-1.0,)
         self.NOBJ = len(self.weights)#評価関数の数
@@ -141,10 +141,9 @@ class newnsga3(nsga3):
         xr = Xrotor(self.b, self.fs)
         xr.aero(self.aerof)
         xr.impo(rotorf)
+        xr.dens = self.dens
         xr.velo = self.velo
         xr.rpm = self.rpm1
-        xr.oper()
-        xr.rpm = self.rpm2
         xr.oper()
         xr.cput(resultf)
         res = xr.call(timeout = 7)
@@ -154,14 +153,11 @@ class newnsga3(nsga3):
                 raise Exception("failed to complete xrotor")
             else:
                 result = np.loadtxt(resultf, skiprows=3)
-                eff = result[0][-1]
-                T1 = result[0][10]
-                T2 = result[1][10]
+                eff = result[-1]
+                T1 = result[10]
                 #ペナルティ
                 if T1 < self.T1:
                     penalty += (self.T1 - T1)
-                if T2 < self.T2:
-                    penalty += (self.T2 - T2)
         except Exception as e:
             print(e)
             eff = 0
