@@ -25,7 +25,7 @@ http://web.mit.edu/drela/Public/web/xrotor/xrotor_doc.txt
 - diameter : 0.14 m
 - tip radius : 0.07 m
 - hub radius : 0.005 m
-- Thrust : 1Nf
+- Thrust : 1N
 - rpm : 6500
 ## aerofoil
 - AG14
@@ -54,5 +54,5 @@ http://web.mit.edu/drela/Public/web/xrotor/xrotor_doc.txt
 ## constraint
 - chord : 0.005m <= chords[i] <= 0.04m
 - beta  : 0deg <= betas[i] <= 22deg
-- Thrust >= 1Nf @ 6500rpm
-- Thrust >= 3Nf @ 9500rpm
+- Thrust >= 1N @ 6500rpm
+- Thrust >= 3N @ 9500rpm
