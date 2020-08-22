@@ -20,7 +20,7 @@ from deap import tools
     - diameter : 0.3 m
     - tip radius : 0.15 m
     - hub radius : 0.03 m
-    - Thrust : 1.13Nf
+    - Thrust : 2.571Nf
     - rpm : 2000
     - density : 1.226e-2
 # aerofoil
@@ -51,7 +51,7 @@ from deap import tools
     - chord : 0.005m <= chords[i] <= 0.1m
     - beta  : 0deg <= betas[i] <= 90deg
 # penalty
-    - Thrust >= 3Nf
+    - Thrust >= 2.571Nf
 ------------------------------------
 プログラム概要
 ------------------------------------
@@ -77,7 +77,7 @@ class newnsga3(nsga3):
         super().__init__()
         self.tipr = 0.15
         self.hubr = 0.01
-        self.T1 = 1.13
+        self.T1 = 2.571
         self.rpm1 = 2000
         self.r_R = [0.1, 0.3, 0.5, 0.7, 0.9, 1.0]
         self.sn = len(self.r_R)

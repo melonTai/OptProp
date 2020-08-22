@@ -25,7 +25,7 @@ http://web.mit.edu/drela/Public/web/xrotor/xrotor_doc.txt
 - diameter : 0.3 m
 - tip radius : 0.15 m
 - hub radius : 0.03 m
-- Thrust : 3N
+- Thrust : 2.517N
 - rpm : 2000
 - density : 1.226e-2
 # aerofoil
@@ -53,7 +53,6 @@ http://web.mit.edu/drela/Public/web/xrotor/xrotor_doc.txt
     - 0 to 5  : chord[m] @ r/R[0.1, 0.3, 0.5, 0.7, 0.9, 1.0]
     - 6 to 11 : beta[deg] @ r/R[0.1, 0.3, 0.5, 0.7, 0.9, 1.0]
 ## constraint
-- chord : 0.005m <= chords[i] <= 0.04m
-- beta  : 0deg <= betas[i] <= 22deg
-- Thrust >= 1N @ 6500rpm
-- Thrust >= 3N @ 9500rpm
+    - chord : 0.005m <= chords[i] <= 0.1m
+    - beta  : 0deg <= betas[i] <= 90deg
+    - Thrust >= 2.571Nf
