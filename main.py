@@ -48,7 +48,7 @@ from deap import tools
         - 0 to 5  : chord[m] @ r/R[0.1, 0.3, 0.5, 0.7, 0.9, 1.0]
         - 6 to 11 : beta[deg] @ r/R[0.1, 0.3, 0.5, 0.7, 0.9, 1.0]
 # constraint
-    - chord : 0.005m <= chords[i] <= 0.1m
+    - chord : 0.005m <= chords[i] <= 0.2m
     - beta  : 0deg <= betas[i] <= 90deg
 # penalty
     - Thrust >= 2.571Nf
@@ -75,10 +75,10 @@ http://web.mit.edu/drela/Public/web/xrotor/xrotor_doc.txt
 class newnsga3(nsga3):
     def __init__(self):
         super().__init__()
-        self.tipr = 0.15
+        self.tipr = 0.3
         self.hubr = 0.01
         self.T1 = 2.571
-        self.rpm1 = 2000
+        self.rpm1 = 3000
         self.r_R = [0.1, 0.3, 0.5, 0.7, 0.9, 1.0]
         self.sn = len(self.r_R)
         self.b = 2
@@ -92,7 +92,7 @@ class newnsga3(nsga3):
         self.NDIM = 12
         ## constraint
         self.BOUND_LOW = [0.005] * 6 + [0] * 6
-        self.BOUND_UP = [0.1] * 6 + [90] * 6
+        self.BOUND_UP = [0.2] * 6 + [90] * 6
 
         self.weights = (-1.0,)
         self.NOBJ = len(self.weights)#評価関数の数
@@ -153,7 +153,7 @@ class newnsga3(nsga3):
                 raise Exception("failed to complete xrotor")
             else:
                 result = np.loadtxt(resultf, skiprows=3)
-                eff = result[-1]
+                eff = result[-2]
                 T1 = result[10]
                 #ペナルティ
                 if T1 < self.T1:
