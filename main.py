@@ -17,10 +17,10 @@ from deap import tools
 設計諸元
 ------------------------------------
 # rotor(tale)
-    - diameter : 0.3 m
-    - tip radius : 0.15 m
-    - hub radius : 0.03 m
-    - Thrust : 2.571Nf
+    - diameter : 0.8 m
+    - tip radius : 0.4 m
+    - hub radius : 0.01 m
+    - Thrust : 2.271Nf
     - rpm : 2000
     - density : 1.226e-2
 # aerofoil
@@ -75,10 +75,10 @@ http://web.mit.edu/drela/Public/web/xrotor/xrotor_doc.txt
 class newnsga3(nsga3):
     def __init__(self):
         super().__init__()
-        self.tipr = 0.3
+        self.tipr = 0.4
         self.hubr = 0.01
-        self.T1 = 2.571
-        self.rpm1 = 3000
+        self.T1 = 2.271
+        self.rpm1 = 2000
         self.r_R = [0.1, 0.3, 0.5, 0.7, 0.9, 1.0]
         self.sn = len(self.r_R)
         self.b = 2
@@ -98,8 +98,8 @@ class newnsga3(nsga3):
         self.NOBJ = len(self.weights)#評価関数の数
         self.MU = 200#人口の数
         self.NGEN = 300#世代数
-        self.CXPB = 0.7#交叉の確立(1を100%とする)
-        self.MUTPB = 0.5#突然変異の確立(1を100%とする)
+        self.CXPB = 1.0#交叉の確立(1を100%とする)
+        self.MUTPB = 1.0#突然変異の確立(1を100%とする)
         self.cx_eta = 20
         self.mut_eta = 20
         self.thread = 1
@@ -157,12 +157,11 @@ class newnsga3(nsga3):
                 T1 = result[10]
                 #ペナルティ
                 if T1 < self.T1:
-                    penalty += (self.T1 - T1)
+                    penalty += 1e10 + (self.T1 - T1)
+                if eff < 0:
+                    penalty += 1e10 - eff
         except Exception as e:
-            print(e)
-            eff = 0
-            T = -1
-            penalty += 10
+            eff = 2e10
 
         try:
             os.remove(rotorf)
@@ -174,7 +173,7 @@ class newnsga3(nsga3):
             print(e)
 
         #目的値
-        obj1 = -eff + penalty
+        obj1 = eff + penalty
         #x, y = self.spline(radii,chords,100)
         #obj2 = self.beauty(x, y)
         #x, y = self.spline(radii,betas, 100)
