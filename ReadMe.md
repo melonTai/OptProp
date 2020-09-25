@@ -22,10 +22,10 @@ http://web.mit.edu/drela/Public/web/xrotor/xrotor_doc.txt
 # 設計諸元
 ------------------------------------
 # rotor(tale)
-- diameter : 0.3 m
-- tip radius : 0.15 m
-- hub radius : 0.03 m
-- Thrust : 2.517N
+- diameter : 0.8 m
+- tip radius : 0.4 m
+- hub radius : 0.01 m
+- Thrust : 2.271Nf
 - rpm : 2000
 - density : 1.226e-2
 # aerofoil
